@@ -34,10 +34,14 @@ export const Exercise = ({ exercise }: IProps) => (
         <InfoLabel>Wiederholungen:</InfoLabel>
         <InfoValue>{exercise.repeat}</InfoValue>
       </InfoRow>
-      <InfoRow>
-        <InfoLabel>Gewicht</InfoLabel>
-        <InfoValue>{exercise.weight}</InfoValue>
-      </InfoRow>
+      {exercise.weight ? (
+        <InfoRow>
+          <InfoLabel>Gewicht</InfoLabel>
+          <InfoValue>{exercise.weight}</InfoValue>
+        </InfoRow>
+      ) : (
+        ''
+      )}
     </Info>
   </Container>
 );
