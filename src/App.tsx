@@ -1,19 +1,40 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
+import { Exercise } from './plan/components/exercise.component';
+import { IExercise } from './plan/models/exercise';
+
+const data: IExercise[] = [
+  {
+    muscleGroup: 'Breast',
+    name: 'Push Up',
+    sets: 3,
+    repeat: 20,
+    image: 'push-up.svg',
+  },
+  {
+    muscleGroup: 'Leg',
+    name: 'Squat',
+    sets: 3,
+    repeat: 20,
+    image: 'squat.svg',
+  },
+  {
+    muscleGroup: 'Abdominal',
+    name: 'Squat',
+    sets: 3,
+    repeat: 20,
+    image: 'sit-up.svg',
+  },
+];
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div>
+        {data.map((exercise: IExercise) => (
+          <Exercise exercise={exercise} key={exercise.name} />
+        ))}
       </div>
     );
   }
