@@ -5,4 +5,5 @@ export interface IExercise {
   repeat: number;
   weight?: number;
   image: string;
+  comment?: string;
 }

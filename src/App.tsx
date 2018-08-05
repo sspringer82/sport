@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 
-import { Exercise } from './plan/components/exercise.component';
+import { Plan } from './plan/components/plan.component';
 import { IExercise } from './plan/models/exercise';
 
 const data: IExercise[] = [
@@ -30,13 +30,7 @@ const data: IExercise[] = [
 
 class App extends React.Component {
   public render() {
-    return (
-      <div>
-        {data.map((exercise: IExercise) => (
-          <Exercise exercise={exercise} key={exercise.name} />
-        ))}
-      </div>
-    );
+    return <Plan exercises={data} />;
   }
 }
 

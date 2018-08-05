@@ -12,10 +12,11 @@ import {
 
 interface IProps {
   exercise: IExercise;
+  isActive: boolean;
 }
 
-export const Exercise = ({ exercise }: IProps) => (
-  <Container>
+export const Exercise = ({ exercise, isActive }: IProps) => (
+  <Container className={isActive ? 'active' : ''}>
     <Image src={exercise.image} />
     <Info>
       <InfoRow>
@@ -36,8 +37,16 @@ export const Exercise = ({ exercise }: IProps) => (
       </InfoRow>
       {exercise.weight ? (
         <InfoRow>
-          <InfoLabel>Gewicht</InfoLabel>
+          <InfoLabel>Gewicht:</InfoLabel>
           <InfoValue>{exercise.weight}</InfoValue>
+        </InfoRow>
+      ) : (
+        ''
+      )}
+      {exercise.comment ? (
+        <InfoRow>
+          <InfoLabel>Kommentar:</InfoLabel>
+          <InfoValue>{exercise.comment}</InfoValue>
         </InfoRow>
       ) : (
         ''

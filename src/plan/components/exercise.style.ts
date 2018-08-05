@@ -7,6 +7,10 @@ export const Container = styled(Paper)`
     display: flex;
     padding: ${padding};
     margin: ${margin};
+
+    &.active {
+      background-color: lightyellow;
+    }
   }
 `;
 
