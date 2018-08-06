@@ -29,7 +29,10 @@ export const Exercise = ({
     handleToggleDone(exercise);
   };
   return (
-    <Container className={isActive ? 'active' : ''}>
+    <Container
+      elevation={isActive ? 2 : 1}
+      className={isActive ? 'active' : ''}
+    >
       <Image
         height="80"
         width="80"
@@ -68,7 +71,11 @@ export const Exercise = ({
           ''
         )}
       </Info>
-      <Control onClick={toggleDone}>
+      <Control
+        onClick={toggleDone}
+        variant="contained"
+        className={exercise.done ? 'done' : 'notDone'}
+      >
         {exercise.done ? <Done /> : <Clear />}
       </Control>
     </Container>

@@ -1,4 +1,4 @@
-import { Paper } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import styled from 'styled-components';
 import { margin, padding } from '../../shared/variables.style';
 
@@ -9,7 +9,7 @@ export const Container = styled(Paper)`
     margin: ${margin};
 
     &.active {
-      background-color: lightyellow;
+      border: 1px solid grey;
     }
   }
 `;
@@ -40,9 +40,20 @@ export const Image = styled.img`
   flex: 0 0 60px;
 `;
 
-export const Control = styled.div`
-  width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const Control = styled(Button)`
+  && {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    &.done {
+      border: 1px solid green;
+      color: green;
+    }
+    &.notDone {
+      border: 1px solid red;
+      color: red;
+    }
+  }
 `;
