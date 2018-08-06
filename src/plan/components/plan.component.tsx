@@ -3,19 +3,23 @@ import * as React from 'react';
 import { Component } from 'react';
 
 import { IExercise } from '../models/exercise';
+import { Detail } from './detail.component';
 import { Exercise } from './exercise.component';
 
 interface IProps {
   exercises: IExercise[];
+  handleToggleDone: (exercise: IExercise) => void;
 }
 
 interface IState {
   current: IExercise | null;
+  viewDetail: boolean;
 }
 
 export class Plan extends Component<IProps, IState> {
   public state = {
     current: null,
+    viewDetail: false,
   };
 
   public componentDidMount() {
@@ -28,17 +32,31 @@ export class Plan extends Component<IProps, IState> {
     }
   }
 
+  public toggleDetail = () => {
+    this.setState((prevState: IState) => {
+      return update(prevState, {
+        $toggle: ['viewDetail'],
+      });
+    });
+  };
+
   public render() {
-    return (
-      <div>
-        {this.props.exercises.map((exercise: IExercise) => (
-          <Exercise
-            exercise={exercise}
-            isActive={exercise === this.state.current}
-            key={exercise.name}
-          />
-        ))}
-      </div>
-    );
+    if (this.state.viewDetail && this.state.current) {
+      return <Detail exercise={this.state.current} />;
+    } else {
+      return (
+        <div>
+          {this.props.exercises.map((exercise: IExercise) => (
+            <Exercise
+              exercise={exercise}
+              isActive={exercise === this.state.current}
+              key={exercise.name}
+              handleToggleViewDetail={this.toggleDetail}
+              handleToggleDone={this.props.handleToggleDone}
+            />
+          ))}
+        </div>
+      );
+    }
   }
 }

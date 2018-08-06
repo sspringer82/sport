@@ -6,4 +6,5 @@ export interface IExercise {
   weight?: number;
   image: string;
   comment?: string;
+  done: boolean;
 }

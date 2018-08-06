@@ -1,8 +1,10 @@
+import { Clear, Done } from '@material-ui/icons';
 import * as React from 'react';
 import { IExercise } from '../models/exercise';
 
 import {
   Container,
+  Control,
   Image,
   Info,
   InfoLabel,
@@ -13,44 +15,62 @@ import {
 interface IProps {
   exercise: IExercise;
   isActive: boolean;
+  handleToggleViewDetail: () => void;
+  handleToggleDone: (exercise: IExercise) => void;
 }
 
-export const Exercise = ({ exercise, isActive }: IProps) => (
-  <Container className={isActive ? 'active' : ''}>
-    <Image src={exercise.image} />
-    <Info>
-      <InfoRow>
-        <InfoLabel>Muskelgruppe:</InfoLabel>
-        <InfoValue>{exercise.muscleGroup}</InfoValue>
-      </InfoRow>
-      <InfoRow>
-        <InfoLabel>Name:</InfoLabel>
-        <InfoValue>{exercise.name}</InfoValue>
-      </InfoRow>
-      <InfoRow>
-        <InfoLabel>Anzahl Sätze:</InfoLabel>
-        <InfoValue>{exercise.sets}</InfoValue>
-      </InfoRow>
-      <InfoRow>
-        <InfoLabel>Wiederholungen:</InfoLabel>
-        <InfoValue>{exercise.repeat}</InfoValue>
-      </InfoRow>
-      {exercise.weight ? (
+export const Exercise = ({
+  exercise,
+  isActive,
+  handleToggleViewDetail,
+  handleToggleDone,
+}: IProps) => {
+  const toggleDone = (event: React.MouseEvent<HTMLDivElement>): void => {
+    handleToggleDone(exercise);
+  };
+  return (
+    <Container className={isActive ? 'active' : ''}>
+      <Image
+        height="80"
+        width="80"
+        src={exercise.image}
+        onClick={handleToggleViewDetail}
+      />
+      <Info>
         <InfoRow>
-          <InfoLabel>Gewicht:</InfoLabel>
-          <InfoValue>{exercise.weight}</InfoValue>
+          <InfoValue>{exercise.muscleGroup}</InfoValue>
         </InfoRow>
-      ) : (
-        ''
-      )}
-      {exercise.comment ? (
         <InfoRow>
-          <InfoLabel>Kommentar:</InfoLabel>
-          <InfoValue>{exercise.comment}</InfoValue>
+          <InfoValue>{exercise.name}</InfoValue>
         </InfoRow>
-      ) : (
-        ''
-      )}
-    </Info>
-  </Container>
-);
+        <InfoRow>
+          <InfoLabel>Sets:</InfoLabel>
+          <InfoValue>{exercise.sets}</InfoValue>
+        </InfoRow>
+        <InfoRow>
+          <InfoLabel>Repeat:</InfoLabel>
+          <InfoValue>{exercise.repeat}</InfoValue>
+        </InfoRow>
+        {exercise.weight ? (
+          <InfoRow>
+            <InfoLabel>Gewicht:</InfoLabel>
+            <InfoValue>{exercise.weight}</InfoValue>
+          </InfoRow>
+        ) : (
+          ''
+        )}
+        {exercise.comment ? (
+          <InfoRow>
+            <InfoLabel>Kommentar:</InfoLabel>
+            <InfoValue>{exercise.comment}</InfoValue>
+          </InfoRow>
+        ) : (
+          ''
+        )}
+      </Info>
+      <Control onClick={toggleDone}>
+        {exercise.done ? <Done /> : <Clear />}
+      </Control>
+    </Container>
+  );
+};

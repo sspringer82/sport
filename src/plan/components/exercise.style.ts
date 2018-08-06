@@ -17,6 +17,7 @@ export const Container = styled(Paper)`
 export const Info = styled.div`
   display: table;
   flex-direction: column;
+  flex-grow: 1;
 `;
 
 export const InfoRow = styled.div`
@@ -33,5 +34,12 @@ export const InfoValue = styled.div`
 `;
 
 export const Image = styled.img`
+  height: 60px;
+  width: 60px;
   padding: 0 ${padding};
+  flex: 0 0 60px;
+`;
+
+export const Control = styled.div`
+  width: 60px;
 `;
