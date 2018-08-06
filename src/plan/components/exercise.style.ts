@@ -42,4 +42,7 @@ export const Image = styled.img`
 
 export const Control = styled.div`
   width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
