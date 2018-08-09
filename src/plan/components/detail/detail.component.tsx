@@ -1,14 +1,25 @@
-import { Clear as ClearIcon, Edit as EditIcon } from '@material-ui/icons';
+import {
+  ArrowBack as BackIcon,
+  Clear as ClearIcon,
+  Edit as EditIcon,
+} from '@material-ui/icons';
 import update from 'immutability-helper';
 import * as React from 'react';
 import { IExercise } from '../../models/exercise';
-import { Container, EditContainer, Header, SubHeader } from './detail.style';
+import {
+  BackContainer,
+  Container,
+  EditContainer,
+  Header,
+  SubHeader,
+} from './detail.style';
 import { Edit, IState as EditState } from './edit.component';
 import { Info } from './info.component';
 
 interface IProps {
   exercise: IExercise | null;
   updateExercise: (exercise: IExercise) => void;
+  handleBack: () => void;
 }
 
 interface IState {
@@ -37,6 +48,9 @@ export class Detail extends React.Component<IProps, IState> {
     if (this.props.exercise) {
       return (
         <Container>
+          <BackContainer onClick={this.props.handleBack}>
+            <BackIcon />
+          </BackContainer>
           <EditContainer onClick={this.toggleEditMode}>
             {!this.state.editMode ? <EditIcon /> : <ClearIcon />}
           </EditContainer>

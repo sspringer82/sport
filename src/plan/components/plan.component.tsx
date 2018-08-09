@@ -33,14 +33,13 @@ export class Plan extends Component<IProps, IState> {
     }
   }
 
-  public toggleDetail = (exercise: string) => {
-    this.setState((prevState: IState) => {
-      const state = update(prevState, {
+  public toggleDetail = (exercise = '') => {
+    this.setState((prevState: IState) =>
+      update(prevState, {
         current: { $set: exercise },
         $toggle: ['viewDetail'],
-      });
-      return state;
-    });
+      }),
+    );
   };
 
   public render() {
@@ -52,6 +51,7 @@ export class Plan extends Component<IProps, IState> {
         <Detail
           exercise={exercise}
           updateExercise={this.props.updateExercise}
+          handleBack={this.toggleDetail}
         />
       );
     } else {
