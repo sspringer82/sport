@@ -15,7 +15,7 @@ import {
 interface IProps {
   exercise: IExercise;
   isActive: boolean;
-  handleToggleViewDetail: () => void;
+  handleToggleViewDetail: (exercise: string) => void;
   handleToggleDone: (exercise: IExercise) => void;
 }
 
@@ -28,6 +28,10 @@ export const Exercise = ({
   const toggleDone = (event: React.MouseEvent<HTMLDivElement>): void => {
     handleToggleDone(exercise);
   };
+  function viewDetails() {
+    handleToggleViewDetail(exercise.name);
+  }
+
   return (
     <Container
       elevation={isActive ? 2 : 1}
@@ -37,7 +41,7 @@ export const Exercise = ({
         height="80"
         width="80"
         src={exercise.image}
-        onClick={handleToggleViewDetail}
+        onClick={viewDetails}
       />
       <Info>
         <InfoRow>

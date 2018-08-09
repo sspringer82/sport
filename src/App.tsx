@@ -41,6 +41,18 @@ class App extends React.Component<object, IState> {
     exercises: data,
   };
 
+  public updateExercise = (exercise: IExercise) => {
+    const index = this.state.exercises.findIndex(
+      item => item.name === exercise.name,
+    );
+    this.setState(prevState => {
+      const state = update(prevState, {
+        exercises: { $splice: [[index, 1, exercise]] },
+      });
+      return state;
+    });
+  };
+
   public handleToggleDone = (exercise: IExercise) => {
     data = this.state.exercises.map((item: IExercise) => {
       if (item.name === exercise.name) {
@@ -53,7 +65,13 @@ class App extends React.Component<object, IState> {
     });
   };
   public render() {
-    return <Plan exercises={data} handleToggleDone={this.handleToggleDone} />;
+    return (
+      <Plan
+        exercises={this.state.exercises}
+        handleToggleDone={this.handleToggleDone}
+        updateExercise={this.updateExercise}
+      />
+    );
   }
 }
 

@@ -37,6 +37,5 @@ export const Info = ({ exercise }: IProps) => (
     ) : (
       ''
     )}
-    {}
   </InfoContainer>
 );

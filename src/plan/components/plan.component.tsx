@@ -9,10 +9,11 @@ import { Exercise } from './exercise.component';
 interface IProps {
   exercises: IExercise[];
   handleToggleDone: (exercise: IExercise) => void;
+  updateExercise: (exercise: IExercise) => void;
 }
 
 interface IState {
-  current: IExercise | null;
+  current: string | null;
   viewDetail: boolean;
 }
 
@@ -26,23 +27,33 @@ export class Plan extends Component<IProps, IState> {
     if (this.props.exercises.length > 0) {
       this.setState((prevState: IState) => {
         return update(prevState, {
-          $set: { current: this.props.exercises[0] },
+          $set: { current: this.props.exercises[0].name },
         });
       });
     }
   }
 
-  public toggleDetail = () => {
+  public toggleDetail = (exercise: string) => {
     this.setState((prevState: IState) => {
-      return update(prevState, {
+      const state = update(prevState, {
+        current: { $set: exercise },
         $toggle: ['viewDetail'],
       });
+      return state;
     });
   };
 
   public render() {
     if (this.state.viewDetail && this.state.current) {
-      return <Detail exercise={this.state.current} />;
+      const exercise = this.props.exercises.find(
+        item => item.name === this.state.current,
+      ) as IExercise;
+      return (
+        <Detail
+          exercise={exercise}
+          updateExercise={this.props.updateExercise}
+        />
+      );
     } else {
       return (
         <div>

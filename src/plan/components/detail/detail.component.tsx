@@ -3,11 +3,12 @@ import update from 'immutability-helper';
 import * as React from 'react';
 import { IExercise } from '../../models/exercise';
 import { Container, EditContainer, Header, SubHeader } from './detail.style';
-import { Edit } from './edit.component';
+import { Edit, IState as EditState } from './edit.component';
 import { Info } from './info.component';
 
 interface IProps {
   exercise: IExercise | null;
+  updateExercise: (exercise: IExercise) => void;
 }
 
 interface IState {
@@ -25,6 +26,13 @@ export class Detail extends React.Component<IProps, IState> {
     );
   };
 
+  public handleSave = (exercise: EditState) => {
+    this.toggleEditMode();
+    this.props.updateExercise(
+      update(this.props.exercise as IExercise, { $merge: exercise }),
+    );
+  };
+
   public render() {
     if (this.props.exercise) {
       return (
@@ -36,7 +44,7 @@ export class Detail extends React.Component<IProps, IState> {
           <Header>{this.props.exercise.name}</Header>
           <img height="200" src={this.props.exercise.image} alt="" />
           {this.state.editMode ? (
-            <Edit exercise={this.props.exercise} />
+            <Edit exercise={this.props.exercise} handleSave={this.handleSave} />
           ) : (
             <Info exercise={this.props.exercise} />
           )}
