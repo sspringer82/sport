@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Component } from 'react';
 
 import { IExercise } from '../models/exercise';
-import { Detail } from './detail.component';
+import { Detail } from './detail/detail.component';
 import { Exercise } from './exercise.component';
 
 interface IProps {

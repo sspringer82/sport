@@ -1,0 +1,48 @@
+import { Clear as ClearIcon, Edit as EditIcon } from '@material-ui/icons';
+import update from 'immutability-helper';
+import * as React from 'react';
+import { IExercise } from '../../models/exercise';
+import { Container, EditContainer, Header, SubHeader } from './detail.style';
+import { Edit } from './edit.component';
+import { Info } from './info.component';
+
+interface IProps {
+  exercise: IExercise | null;
+}
+
+interface IState {
+  editMode: boolean;
+}
+
+export class Detail extends React.Component<IProps, IState> {
+  public state = {
+    editMode: false,
+  };
+
+  public toggleEditMode = () => {
+    this.setState((prevState: IState) =>
+      update(prevState, { $toggle: ['editMode'] }),
+    );
+  };
+
+  public render() {
+    if (this.props.exercise) {
+      return (
+        <Container>
+          <EditContainer onClick={this.toggleEditMode}>
+            {!this.state.editMode ? <EditIcon /> : <ClearIcon />}
+          </EditContainer>
+          <SubHeader>{this.props.exercise.muscleGroup}</SubHeader>
+          <Header>{this.props.exercise.name}</Header>
+          <img height="200" src={this.props.exercise.image} alt="" />
+          {this.state.editMode ? (
+            <Edit exercise={this.props.exercise} />
+          ) : (
+            <Info exercise={this.props.exercise} />
+          )}
+        </Container>
+      );
+    }
+    return <div>No exercise selected</div>;
+  }
+}
