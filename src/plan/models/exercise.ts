@@ -7,4 +7,5 @@ export interface IExercise {
   image: string;
   comment?: string;
   done: boolean;
+  time?: string;
 }
