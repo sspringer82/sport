@@ -1,6 +1,6 @@
 import { Button, Paper } from '@material-ui/core';
 import styled from 'styled-components';
-import { margin, padding } from '../../shared/variables.style';
+import { grey, margin, padding } from '../../shared/variables.style';
 
 export const Container = styled(Paper)`
   && {
@@ -26,11 +26,18 @@ export const InfoRow = styled.div`
 
 export const InfoLabel = styled.div`
   display: table-cell;
+  width: 300px;
   padding-right: ${padding};
 `;
 
 export const InfoValue = styled.div`
   display: table-cell;
+  &.muscleGroup {
+    color: ${grey};
+  }
+  &.exerciseName {
+    font-weight: bold;
+  }
 `;
 
 export const Image = styled.img`

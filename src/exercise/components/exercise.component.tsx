@@ -48,7 +48,7 @@ export const Exercise = ({
           <InfoValue className="muscleGroup">{exercise.muscleGroup}</InfoValue>
         </InfoRow>
         <InfoRow>
-          <InfoValue>{exercise.name}</InfoValue>
+          <InfoValue className="exerciseName">{exercise.name}</InfoValue>
         </InfoRow>
         <InfoRow>
           <InfoLabel>Sets:</InfoLabel>
