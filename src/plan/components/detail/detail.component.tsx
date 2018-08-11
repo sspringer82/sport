@@ -58,7 +58,11 @@ export class Detail extends React.Component<IProps, IState> {
           <Header>{this.props.exercise.name}</Header>
           <img height="200" src={this.props.exercise.image} alt="" />
           {this.state.editMode ? (
-            <Edit exercise={this.props.exercise} handleSave={this.handleSave} />
+            <Edit
+              exercise={this.props.exercise}
+              handleSave={this.handleSave}
+              handleCancel={this.toggleEditMode}
+            />
           ) : (
             <Info exercise={this.props.exercise} />
           )}

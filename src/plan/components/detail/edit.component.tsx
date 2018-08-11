@@ -12,6 +12,7 @@ import {
 interface IProps {
   exercise: IExercise;
   handleSave: (exercise: IState) => void;
+  handleCancel: () => void;
 }
 
 export interface IState {
@@ -88,7 +89,7 @@ export class Edit extends React.Component<IProps, IState> {
         </InfoRow>
         <InfoRow>
           <Button onClick={this.handleSave}>Save</Button>
-          <Button>Cancel</Button>
+          <Button onClick={this.props.handleCancel}>Cancel</Button>
         </InfoRow>
       </InfoContainer>
     );
