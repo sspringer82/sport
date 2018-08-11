@@ -29,6 +29,14 @@ export const Info = ({ exercise }: IProps) => (
     ) : (
       ''
     )}
+    {exercise.time ? (
+      <InfoRow>
+        <InfoLabel>Zeit:</InfoLabel>
+        <InfoValue>{exercise.time}</InfoValue>
+      </InfoRow>
+    ) : (
+      ''
+    )}
     {exercise.comment ? (
       <InfoRow>
         <InfoLabel>Kommentar:</InfoLabel>

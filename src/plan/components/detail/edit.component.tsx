@@ -19,6 +19,7 @@ export interface IState {
   sets: number;
   repeat: number;
   weight: number;
+  time: string;
   comment: string;
 }
 
@@ -27,6 +28,7 @@ export class Edit extends React.Component<IProps, IState> {
     sets: this.props.exercise.sets,
     repeat: this.props.exercise.repeat,
     weight: this.props.exercise.weight ? this.props.exercise.weight : 0,
+    time: this.props.exercise.time ? this.props.exercise.time : '',
     comment: this.props.exercise.comment ? this.props.exercise.comment : '',
   };
 
@@ -73,6 +75,16 @@ export class Edit extends React.Component<IProps, IState> {
             <Input
               value={this.state.weight}
               name="weight"
+              onChange={this.handleChange}
+            />
+          </InfoValue>
+        </InfoRow>
+        <InfoRow>
+          <InfoLabel>Zeit:</InfoLabel>
+          <InfoValue>
+            <Input
+              value={this.state.time}
+              name="time"
               onChange={this.handleChange}
             />
           </InfoValue>
