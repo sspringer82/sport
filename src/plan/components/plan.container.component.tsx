@@ -60,8 +60,12 @@ export class PlanContainer extends Component<object, IState> {
   public updateExercise = (exercise: IExercise) => {
     const index = this.getExerciseIndex(exercise.name);
     this.setState(prevState => {
-      const state = update(prevState[this.getCurrentPlanIndex()].exercises, {
-        exercises: { $splice: [[index, 1, exercise]] },
+      const state = update(prevState, {
+        plans: {
+          [this.getCurrentPlanIndex()]: {
+            exercises: { $splice: [[index, 1, exercise]] },
+          },
+        },
       });
       return state;
     });
@@ -94,7 +98,7 @@ export class PlanContainer extends Component<object, IState> {
   private getExerciseIndex(exerciseName: string = this.state.currentExercise) {
     const currentPlanIndex = this.getCurrentPlanIndex();
     return this.state.plans[currentPlanIndex].exercises.findIndex(
-      (exercise: IExercise) => exercise.name === this.state.currentExercise,
+      (exercise: IExercise) => exercise.name === exerciseName,
     );
   }
 }
