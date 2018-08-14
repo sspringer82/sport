@@ -2,10 +2,12 @@ import { IPlan } from './plan/models/plan';
 
 export let plans: IPlan[] = [
   {
+    id: 1,
     name: 'A',
     lastTime: '01.01.2018',
     exercises: [
       {
+        id: 1,
         muscleGroup: 'Breast',
         name: 'Push Up',
         sets: 3,
@@ -14,6 +16,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 2,
         muscleGroup: 'Leg',
         name: 'Squat',
         sets: 3,
@@ -22,6 +25,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 3,
         muscleGroup: 'Abdominal',
         name: 'Sit Up',
         sets: 3,
@@ -32,10 +36,12 @@ export let plans: IPlan[] = [
     ],
   },
   {
+    id: 2,
     name: 'B',
     lastTime: '03.01.2018',
     exercises: [
       {
+        id: 1,
         muscleGroup: 'Breast',
         name: 'Push Up',
         sets: 3,
@@ -44,6 +50,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 2,
         muscleGroup: 'Leg',
         name: 'Squat',
         sets: 3,
@@ -52,6 +59,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 3,
         muscleGroup: 'Abdominal',
         name: 'Sit Up',
         sets: 3,
@@ -62,10 +70,12 @@ export let plans: IPlan[] = [
     ],
   },
   {
+    id: 3,
     name: 'C',
     lastTime: '05.01.2018',
     exercises: [
       {
+        id: 1,
         muscleGroup: 'Breast',
         name: 'Push Up',
         sets: 3,
@@ -74,6 +84,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 2,
         muscleGroup: 'Leg',
         name: 'Squat',
         sets: 3,
@@ -82,6 +93,7 @@ export let plans: IPlan[] = [
         done: false,
       },
       {
+        id: 3,
         muscleGroup: 'Abdominal',
         name: 'Sit Up',
         sets: 3,

@@ -11,7 +11,7 @@ interface IProps {
   showDetails: (exercise: IExercise) => void;
 }
 
-export const Plan = ({
+export const List = ({
   exercises,
   handleToggleDone,
   showDetails,

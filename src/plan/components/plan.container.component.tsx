@@ -4,10 +4,10 @@ import { Component } from 'react';
 
 import { plans } from '../../data';
 import { Detail } from '../../detail/components/detail.component';
-import { Plan } from '../../exercise/components/plan.component';
+import { List as ExerciseList } from '../../exercise/components/list.component';
 import { IExercise } from '../../exercise/models/exercise';
 import { IPlan } from '../models/plan';
-import { List } from './list.component';
+import { List as PlanList } from './list.component';
 
 interface IState {
   currentPlan: IPlan;
@@ -34,7 +34,7 @@ export class PlanContainer extends Component<object, IState> {
     switch (this.state.view) {
       case View.plan:
         return (
-          <Plan
+          <ExerciseList
             exercises={this.state.plans[this.getCurrentPlanIndex()].exercises}
             handleToggleDone={this.handleToggleDone}
             updateExercise={this.updateExercise}
@@ -45,15 +45,22 @@ export class PlanContainer extends Component<object, IState> {
       case View.detail:
         return (
           <Detail
-            exercise={this.state.currentExercise}
+            exercise={
+              this.state.plans[this.getCurrentPlanIndex()].exercises[
+                this.getExerciseIndex()
+              ]
+            }
             updateExercise={this.updateExercise}
-            handleBack={this.selectPlan}
+            handleBack={this.selectPlan.bind(this, undefined)}
           />
         );
       case View.list:
       default:
         return (
-          <List plans={this.state.plans} handleSelectPlan={this.selectPlan} />
+          <PlanList
+            plans={this.state.plans}
+            handleSelectPlan={this.selectPlan}
+          />
         );
     }
   }
@@ -109,14 +116,14 @@ export class PlanContainer extends Component<object, IState> {
 
   private getCurrentPlanIndex() {
     return this.state.plans.findIndex(
-      (plan: IPlan) => plan === this.state.currentPlan,
+      (plan: IPlan) => plan.id === this.state.currentPlan.id,
     );
   }
 
   private getExerciseIndex(exercise: IExercise = this.state.currentExercise) {
     const currentPlanIndex = this.getCurrentPlanIndex();
     return this.state.plans[currentPlanIndex].exercises.findIndex(
-      (item: IExercise) => item === exercise,
+      (item: IExercise) => item.id === exercise.id,
     );
   }
 }
