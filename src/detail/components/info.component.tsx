@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IExercise } from '../../models/exercise';
+import { IExercise } from '../../exercise/models/exercise';
 import {
   Info as InfoContainer,
   InfoLabel,

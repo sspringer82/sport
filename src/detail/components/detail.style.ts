@@ -1,7 +1,12 @@
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
-import { grey } from '../../../shared/variables.style';
-export { Info, InfoRow, InfoLabel, InfoValue } from '../common.style';
+import { grey } from '../../shared/variables.style';
+export {
+  Info,
+  InfoRow,
+  InfoLabel,
+  InfoValue,
+} from '../../exercise/components/common.style';
 
 export const Container = styled.div`
   display: flex;

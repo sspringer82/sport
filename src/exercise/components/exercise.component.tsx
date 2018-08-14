@@ -15,21 +15,21 @@ import {
 interface IProps {
   exercise: IExercise;
   isActive: boolean;
-  handleToggleViewDetail: (exercise: string) => void;
+  showDetails: (exercise: IExercise) => void;
   handleToggleDone: (exercise: IExercise) => void;
 }
 
 export const Exercise = ({
   exercise,
   isActive,
-  handleToggleViewDetail,
+  showDetails,
   handleToggleDone,
 }: IProps) => {
   const toggleDone = (event: React.MouseEvent<HTMLDivElement>): void => {
     handleToggleDone(exercise);
   };
   function viewDetails() {
-    handleToggleViewDetail(exercise.name);
+    showDetails(exercise);
   }
 
   return (

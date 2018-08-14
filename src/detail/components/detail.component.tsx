@@ -5,7 +5,7 @@ import {
 } from '@material-ui/icons';
 import update from 'immutability-helper';
 import * as React from 'react';
-import { IExercise } from '../../models/exercise';
+import { IExercise } from '../../exercise/models/exercise';
 import {
   BackContainer,
   Container,
