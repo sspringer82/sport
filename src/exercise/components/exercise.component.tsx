@@ -50,16 +50,16 @@ export const Exercise = ({
         <InfoRow>
           <InfoValue className="exerciseName">{exercise.name}</InfoValue>
         </InfoRow>
-        <InfoRow>
+        <InfoRow className="values">
           <InfoLabel>Sets:</InfoLabel>
           <InfoValue>{exercise.sets}</InfoValue>
         </InfoRow>
-        <InfoRow>
+        <InfoRow className="values">
           <InfoLabel>Repeat:</InfoLabel>
           <InfoValue>{exercise.repeat}</InfoValue>
         </InfoRow>
         {exercise.weight ? (
-          <InfoRow>
+          <InfoRow className="values">
             <InfoLabel>Gewicht:</InfoLabel>
             <InfoValue>{exercise.weight}</InfoValue>
           </InfoRow>
@@ -67,7 +67,7 @@ export const Exercise = ({
           ''
         )}
         {exercise.time ? (
-          <InfoRow>
+          <InfoRow className="values">
             <InfoLabel>Zeit:</InfoLabel>
             <InfoValue>{exercise.time}</InfoValue>
           </InfoRow>

@@ -22,6 +22,9 @@ export const Info = styled.div`
 
 export const InfoRow = styled.div`
   display: table-row;
+  &.values > div {
+    border-bottom: 1px solid ${grey};
+  }
 `;
 
 export const InfoLabel = styled.div`
@@ -54,6 +57,7 @@ export const Control = styled(Button)`
     align-items: center;
     justify-content: center;
     background-color: white;
+    margin-left: ${margin};
     &.done {
       border: 1px solid green;
       color: green;
