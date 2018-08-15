@@ -31,7 +31,7 @@ export class PlanContainer extends Component<object, IState> {
   };
 
   public componentDidMount() {
-    const dataFromLocalStorage = localStorage.getItem('data');
+    const dataFromLocalStorage = this.getFromStorage();
     let data: IPlan[];
 
     if (dataFromLocalStorage) {
@@ -109,7 +109,7 @@ export class PlanContainer extends Component<object, IState> {
           },
         },
       });
-      localStorage.setItem('data', JSON.stringify(state.plans));
+      this.saveToStorage(state.plans);
       return state;
     });
   };
@@ -118,7 +118,7 @@ export class PlanContainer extends Component<object, IState> {
     const planIndex = this.getCurrentPlanIndex();
     const exerciseIndex = this.getExerciseIndex(exercise);
     this.setState((prevState: IState) => {
-      return update(prevState, {
+      const state = update(prevState, {
         plans: {
           [planIndex]: {
             exercises: {
@@ -129,6 +129,8 @@ export class PlanContainer extends Component<object, IState> {
           },
         },
       });
+      this.saveToStorage(state.plans);
+      return state;
     });
   };
 
@@ -143,5 +145,13 @@ export class PlanContainer extends Component<object, IState> {
     return this.state.plans[currentPlanIndex].exercises.findIndex(
       (item: IExercise) => item.id === exercise.id,
     );
+  }
+
+  private getFromStorage() {
+    return localStorage.getItem('data');
+  }
+
+  private saveToStorage(newPlans: IPlan[]) {
+    localStorage.setItem('data', JSON.stringify(newPlans));
   }
 }
