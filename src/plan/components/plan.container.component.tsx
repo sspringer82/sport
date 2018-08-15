@@ -30,6 +30,23 @@ export class PlanContainer extends Component<object, IState> {
     view: View.list,
   };
 
+  public componentDidMount() {
+    const dataFromLocalStorage = localStorage.getItem('data');
+    let data: IPlan[];
+
+    if (dataFromLocalStorage) {
+      data = JSON.parse(dataFromLocalStorage);
+    } else {
+      data = plans;
+    }
+
+    localStorage.setItem('data', JSON.stringify(data));
+
+    this.setState((prevState: IState) =>
+      update(prevState, { plans: { $set: data } }),
+    );
+  }
+
   public render() {
     switch (this.state.view) {
       case View.plan:
@@ -92,6 +109,7 @@ export class PlanContainer extends Component<object, IState> {
           },
         },
       });
+      localStorage.setItem('data', JSON.stringify(state.plans));
       return state;
     });
   };
