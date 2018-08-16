@@ -34,16 +34,3 @@ export const EditContainer = styled(Button)`
     justify-content: center;
   }
 `;
-
-export const BackContainer = styled(Button)`
-  && {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;

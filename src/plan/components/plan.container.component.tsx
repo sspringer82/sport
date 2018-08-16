@@ -57,6 +57,7 @@ export class PlanContainer extends Component<object, IState> {
             updateExercise={this.updateExercise}
             showDetails={this.showDetails}
             current={this.state.currentExercise}
+            handleBack={this.goBackToList}
           />
         );
       case View.detail:
@@ -81,6 +82,12 @@ export class PlanContainer extends Component<object, IState> {
         );
     }
   }
+
+  public goBackToList = () => {
+    this.setState((prevState: IState) =>
+      update(prevState, { view: { $set: View.list } }),
+    );
+  };
 
   public showDetails = (exercise: IExercise) => {
     this.setState((prevState: IState) =>

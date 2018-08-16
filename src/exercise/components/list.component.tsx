@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+import { Back } from '../../shared/back.component';
 import { IExercise } from '../models/exercise';
 import { Exercise } from './exercise.component';
+import { Container } from './list.style';
 
 interface IProps {
   exercises: IExercise[];
@@ -9,6 +11,7 @@ interface IProps {
   handleToggleDone: (exercise: IExercise) => void;
   updateExercise: (exercise: IExercise) => void;
   showDetails: (exercise: IExercise) => void;
+  handleBack: () => void;
 }
 
 export const List = ({
@@ -16,8 +19,10 @@ export const List = ({
   handleToggleDone,
   showDetails,
   current,
+  handleBack,
 }: IProps) => (
-  <div>
+  <Container>
+    <Back handleBack={handleBack} />
     {exercises.map((exercise: IExercise) => (
       <Exercise
         isActive={exercise === current}
@@ -27,5 +32,5 @@ export const List = ({
         handleToggleDone={handleToggleDone}
       />
     ))}
-  </div>
+  </Container>
 );

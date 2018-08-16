@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { IPlan } from '../models/plan';
-import { Container } from './plan.styles';
+import { Container } from './plan.style';
 
 interface IProps {
   plan: IPlan;
