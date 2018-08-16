@@ -78,6 +78,7 @@ export class PlanContainer extends Component<object, IState> {
           <PlanList
             plans={this.state.plans}
             handleSelectPlan={this.selectPlan}
+            startPlan={this.startPlan}
           />
         );
     }
@@ -105,6 +106,36 @@ export class PlanContainer extends Component<object, IState> {
         view: { $set: View.plan },
       }),
     );
+
+  public startPlan = (plan: IPlan) => {
+    const date = new Date();
+    const today = `${date
+      .getDate()
+      .toString()
+      .padStart(2, '0')}.${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}.${date.getFullYear()}`;
+    this.setState(
+      (prevState: IState) =>
+        update(prevState, {
+          plans: {
+            [this.getPlanIndex(plan)]: {
+              lastTime: { $set: today },
+              exercises: {
+                $apply: (exercises: IExercise[]) =>
+                  exercises.map((ex: IExercise) =>
+                    update(ex, { done: { $set: false } }),
+                  ),
+              },
+            },
+          },
+        }),
+      () => {
+        this.saveToStorage(this.state.plans);
+        this.selectPlan(this.state.plans[this.getPlanIndex(plan)]);
+      },
+    );
+  };
 
   public updateExercise = (exercise: IExercise) => {
     const index = this.getExerciseIndex(exercise);
@@ -142,9 +173,11 @@ export class PlanContainer extends Component<object, IState> {
   };
 
   private getCurrentPlanIndex() {
-    return this.state.plans.findIndex(
-      (plan: IPlan) => plan.id === this.state.currentPlan.id,
-    );
+    return this.getPlanIndex(this.state.currentPlan);
+  }
+
+  private getPlanIndex(plan: IPlan) {
+    return this.state.plans.findIndex((item: IPlan) => item.id === plan.id);
   }
 
   private getExerciseIndex(exercise: IExercise = this.state.currentExercise) {

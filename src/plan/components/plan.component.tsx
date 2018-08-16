@@ -17,11 +17,18 @@ import {
 interface IProps {
   plan: IPlan;
   handleSelectPlan: (plan: IPlan) => void;
+  startPlan: (plan: IPlan) => void;
   isNext: boolean;
   isLast: boolean;
 }
 
-export const Plan = ({ plan, handleSelectPlan, isNext, isLast }: IProps) => {
+export const Plan = ({
+  plan,
+  handleSelectPlan,
+  startPlan,
+  isNext,
+  isLast,
+}: IProps) => {
   return (
     <Container>
       <Name>{plan.name}</Name>
@@ -29,7 +36,7 @@ export const Plan = ({ plan, handleSelectPlan, isNext, isLast }: IProps) => {
       <Button onClick={handleSelectPlan.bind(null, plan)}>
         <LookIcon />
       </Button>
-      <Button>
+      <Button onClick={startPlan.bind(null, plan)}>
         <GoIcon />
       </Button>
       {isNext ? <NextBanner>Next</NextBanner> : ''}
