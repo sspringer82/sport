@@ -1,6 +1,6 @@
 import { Paper } from '@material-ui/core';
 import styled from 'styled-components';
-import { margin, padding } from '../../shared/variables.style';
+import { grey, margin, padding } from '../../shared/variables.style';
 
 export const Container = styled(Paper)`
   && {
@@ -17,7 +17,9 @@ export const Name = styled.div`
   flex-grow: 1;
 `;
 
-export const LastTime = styled.div``;
+export const LastTime = styled.div`
+  color: ${grey};
+`;
 
 const Banner = styled.div`
   position: absolute;
