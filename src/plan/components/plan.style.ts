@@ -15,6 +15,7 @@ export const Container = styled(Paper)`
 
 export const Name = styled.div`
   flex-grow: 1;
+  padding-left: 10px;
 `;
 
 export const LastTime = styled.div`
